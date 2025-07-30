@@ -152,7 +152,7 @@
       let output = `Kuri ${getCurrentMonthYear()}\n\n`;
       checkboxes.forEach((cb, i) => {
         const name = persons[i];
-        const symbol = cb.checked ? "✔" : "✘";
+        const symbol = cb.checked ? "✅" : "❌";
         output += `${i + 1}. ${name} - ${symbol}\n`;
       });
 

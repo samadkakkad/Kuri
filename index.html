@@ -147,21 +147,25 @@
       localStorage.removeItem(storageKey);
     }
 
-    function copyListToClipboard() {
-      const checkboxes = document.querySelectorAll("input[type='checkbox']");
-      let output = `Kuri ${getCurrentMonthYear()}\n\n`;
-      checkboxes.forEach((cb, i) => {
-        const name = persons[i];
-        const symbol = cb.checked ? "✅" : "❌";
-        output += `${i + 1}. ${name} - ${symbol}\n`;
-      });
+   function copyListToClipboard() {
+  const checkboxes = document.querySelectorAll("input[type='checkbox']");
+  const header = `Kuri ${getCurrentMonthYear()}`;
+  const lines = [header];
 
-      navigator.clipboard.writeText(output).then(() => {
-        alert("List copied to clipboard!");
-      }).catch(err => {
-        alert("Failed to copy: " + err);
-      });
-    }
+  checkboxes.forEach((cb, i) => {
+    const name = persons[i];
+    const symbol = cb.checked ? "✅" : "❌";
+    lines.push(`${i + 1}. ${name} - ${symbol}`);
+  });
+
+  const output = lines.join("\n");
+
+  navigator.clipboard.writeText(output).then(() => {
+    alert("List copied to clipboard!");
+  }).catch(err => {
+    alert("Failed to copy: " + err);
+  });
+}
 
     // Event listeners
     document.getElementById("clearBtn").addEventListener("click", clearAll);

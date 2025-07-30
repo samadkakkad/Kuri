@@ -149,7 +149,7 @@
 
    function copyListToClipboard() {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
-  const header = `*Kuri ${getCurrentMonthYear()}\n*`;
+  const header = `*Kuri ${getCurrentMonthYear()}*\n`;
   const lines = [header];
 
   checkboxes.forEach((cb, i) => {

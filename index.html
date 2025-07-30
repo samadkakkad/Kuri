@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile-Friendly Checkbox List</title>
+  <title>Kuri</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -71,7 +71,8 @@
 </head>
 <body>
 
-  <h2>Kuri 2025</h2>
+  <h2 id="header">Kuri</h2>
+
   <div id="checkboxList">
     <!-- Checkboxes will be inserted here -->
   </div>
@@ -89,6 +90,19 @@
     ];
 
     const storageKey = "checkboxStates";
+
+    function getCurrentMonthYear() {
+      const now = new Date();
+      const month = now.toLocaleString('default', { month: 'long' });
+      const year = now.getFullYear();
+      return `${month} ${year}`;
+    }
+
+    function setDynamicHeader() {
+      const current = getCurrentMonthYear();
+      const header = document.getElementById("header");
+      header.textContent = `Kuri ${current}`;
+    }
 
     function saveState() {
       const checkboxes = document.querySelectorAll("input[type='checkbox']");
@@ -135,7 +149,7 @@
 
     function copyListToClipboard() {
       const checkboxes = document.querySelectorAll("input[type='checkbox']");
-      let output = "";
+      let output = `Kuri ${getCurrentMonthYear()}\n\n`;
       checkboxes.forEach((cb, i) => {
         const name = persons[i];
         const symbol = cb.checked ? "✔" : "✘";
@@ -154,6 +168,7 @@
     document.getElementById("copyBtn").addEventListener("click", copyListToClipboard);
 
     // Initialize
+    setDynamicHeader();
     createCheckboxList();
     loadState();
   </script>
